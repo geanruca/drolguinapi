@@ -72,7 +72,7 @@ class ContactoController extends Controller
 
             return response()->json([
                 "status" => true,
-                "msg"    => "Contacto guardado"
+                "msg"    => "Contacto guardado2"
             ]);
         }
     }
