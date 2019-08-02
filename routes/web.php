@@ -1,5 +1,7 @@
 <?php
 
+use App\Contacto;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,10 +13,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', "PagesController@welcome");
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

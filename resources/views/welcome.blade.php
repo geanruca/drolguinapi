@@ -81,18 +81,19 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Bienvenido.
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                @forelse($contactos as $c)
+                    {{$c->nombre}}<br>
+                    {{$c->edad}}<br>
+                    {{$c->atendido}}<br>
+                    {{$c->email}}<br>
+                    {{$c->tema}}<br>
+                    {{$c->mensaje}}<br>
+                    <a href="{{$c->url_imagen}}"></a> <br>
+                @empty
+                    <p>No hay resultados que mostrar</p>
+                @endforelse
             </div>
         </div>
     </body>
