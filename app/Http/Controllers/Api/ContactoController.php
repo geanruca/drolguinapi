@@ -19,7 +19,11 @@ class ContactoController extends Controller
      */
     public function index()
     {
-        //
+        $a = Contacto::All();
+        return response()->json([
+                "status" => true,
+                "data"   => $a
+            ]);
     }
 
     public function store(Request $r)
@@ -30,8 +34,8 @@ class ContactoController extends Controller
             "atendido" => "required",
             "email"    => "required",
             "tema"     => "required",
-            "mensaje"  => "required"
-            // "imagen"   => "required"  
+            "mensaje"  => "required",
+            "imagen"   => "image|mimes:jpeg,png,jpg,gif,svg|max:4096"
         ]);
 
         $c = new Contacto;
@@ -72,10 +76,66 @@ class ContactoController extends Controller
 
             return response()->json([
                 "status" => true,
-                "msg"    => "Contacto guardado2"
+                "msg"    => "Contacto guardado"
             ]);
         }
     }
+    
+    public function store_firebase(Request $r)
+    {
+        $r->validate([
+            "nombre"   => "required",
+            "edad"     => "required",
+            "atendido" => "required",
+            "email"    => "required",
+            "tema"     => "required",
+            "mensaje"  => "required",
+            // "imagen"   => "image|mimes:jpeg,png,jpg,gif,svg|max:4096"
+        ]);
+
+        $c = new Contacto;
+        $c->nombre     = $r->nombre;
+        $c->edad       = $r->edad;
+        $c->atendido   = $r->atendido;
+        $c->email      = $r->email;
+        $c->tema       = $r->tema;
+        $c->mensaje    = $r->mensaje;
+        $c->url_imagen = $r->url_imagen;
+        // if($r->imagen <> null){
+        //     $c->imagen     = $r->file('imagen')->store('contactos/'.$c->nombre,'public');
+        //     $url_imagen    = Storage::url($c->imagen);
+        //     $c->url_imagen = $url_imagen;
+        // }
+        $c->save();
+
+        if(!$c->save()){
+            \Log::error("Dr. Olguin App: Error al guardar datos");
+            return response()->json([
+                "status" => false,
+                "msg"    => "Error al guardar los datos"
+            ]);
+        }else{
+            \Log::info("Nuevo contacto Dr. Olguín",[
+                "nombre"   => $r->nombre,
+                "edad"     => $r->edad,
+                "atendido" => $r->atendido,
+                "email"    => $r->email,
+                "tema"     => $r->tema,
+                "mensaje"  => $r->mensaje,
+                "imagen"   => $r->imagen
+            ]);
+
+            // Mail::to('gerardo.ruiz.spa@gmail.com')
+            // // ->from($c->email)
+            // ->queue(new NuevoContacto($c));
+
+            return response()->json([
+                "status" => true,
+                "msg"    => "Contacto guardado"
+            ]);
+        }
+    }
+
 
 
     public function show($id)
