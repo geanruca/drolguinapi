@@ -90,7 +90,8 @@
                     {{$c->email}}<br>
                     {{$c->tema}}<br>
                     {{$c->mensaje}}<br>
-                    <a href="{{$c->url_imagen}}"></a> <br>
+                    <img src="{{$c->url_imagen}}" alt="Smiley face" height="42" width="42"><br>
+                    <a href="{{$c->url_imagen}}">Link Imagen</a> <br>
                 @empty
                     <p>No hay resultados que mostrar</p>
                 @endforelse
