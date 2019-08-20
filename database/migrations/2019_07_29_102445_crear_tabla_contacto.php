@@ -16,7 +16,7 @@ class CrearTablaContacto extends Migration
         Schema::create('contactos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
-            $table->integer('edad');
+            $table->string('edad');
             $table->string('atendido')->default("no");
             $table->string('email');
             $table->string('tema');
