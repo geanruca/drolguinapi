@@ -70,9 +70,11 @@ class ContactoController extends Controller
                 "imagen"   => $r->imagen
             ]);
 
-            // Mail::to('gerardo.ruiz.spa@gmail.com')
-            // // ->from($c->email)
-            // ->queue(new NuevoContacto($c));
+            $historial = Contacto::where('email', $r->email)
+            ->get(); 
+               
+            Mail::to('gerardo.ruiz.spa@gmail.com')
+            ->queue(new NuevoContacto($c, $historial));
 
             return response()->json([
                 "status" => true,

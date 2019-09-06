@@ -11,15 +11,17 @@ class NuevoContacto extends Mailable
 {
     use Queueable, SerializesModels;
 
-    
+    public $c;
+    public $historial;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($c, $historial)
     {
-        $c = $this;
+        $this->c = $c;
+        $this->historial = $historial;
     }
 
     /**
@@ -29,8 +31,15 @@ class NuevoContacto extends Mailable
      */
     public function build()
     {
-        return $this->from("gerardito@gmail.com")
+        // dd($this->c);
+        $c = $this->c;
+        $historial = $this->historial;
+        return $this->from($c->email, $c->nombre)
+        ->replyTo($c->email, $c->nombre)
+        ->subject("Dr. Olguin App: ".$c->tema)
+        ->to("gerardo.ruiz.spa@gmail.com")
+        // ->attach($c->url_imagen)
         // ->text("emails.contacto");
-        ->view('emails.contacto');
+        ->view('emails.contacto', compact('c','historial'));
     }
 }
