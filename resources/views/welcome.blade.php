@@ -84,14 +84,14 @@
                     Bienvenido Dr.
                 </div>
                 @forelse($contactos as $c)
-                    {{-- {{$c->nombre}}<br>
+                    {{$c->nombre}}<br>
                     {{$c->edad}}<br>
                     {{$c->atendido}}<br>
                     {{$c->email}}<br>
                     {{$c->tema}}<br>
-                    {{$c->mensaje}}<br> --}}
-                    {{-- <img src="{{$c->url_imagen}}" alt="Smiley face" height="42" width="42"><br>
-                    <a href="{{$c->url_imagen}}">Link Imagen</a> <br> --}}
+                    {{$c->mensaje}}<br>
+                    <img src="{{$c->url_imagen}}" alt="Smiley face" height="42" width="42"><br>
+                    <a href="{{$c->url_imagen}}">Link Imagen</a> <br>
                 @empty
                     <p>No hay resultados que mostrar</p>
                 @endforelse
