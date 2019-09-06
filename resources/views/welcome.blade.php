@@ -79,10 +79,6 @@
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Bienvenido Dr.
-                </div>
                 @forelse($contactos as $c)
                     {{$c->nombre}}<br>
                     {{$c->edad}}<br>
@@ -95,7 +91,6 @@
                 @empty
                     <p>No hay resultados que mostrar</p>
                 @endforelse
-            </div>
         </div>
     </body>
 </html>
