@@ -20,9 +20,9 @@
                 <b>Mensaje:</b> {{$c->mensaje}}
             </div>
             <div class="col">
-                <img name="imagen" id="imagen" src="{{ $message->embed('https://mg.mobilechile.app'.$c->url_imagen) }}" style="display:block; " width="200" height="200" data-auto-embed="attachment"/>
+                <img name="imagen" id="imagen" src="{{ $message->embed('https://mg.mobilechile.app/'.$c->url_imagen) }}" style="display:block; " width="200" height="200" data-auto-embed="attachment"/>
                 <label for="imagen">
-                    <a style="display:block; " href="{{'https://mg.mobilechile.app'.$c->url_imagen}}">Link Imagen</a> 
+                    <a style="display:block; " href="{{'https://mg.mobilechile.app/'.$c->url_imagen}}">Link Imagen</a> 
                 </label>
             </div>
         </div>
@@ -52,7 +52,7 @@
                 <td>{{$historia->tema}}</td>
                 <td>{{$historia->mensaje}}</td>
                 <td>
-                <a href="{{'https://mg.mobilechile.app'.$historia->url_imagen}}">
+                <a href="{{'https://mg.mobilechile.app/'.$historia->url_imagen}}">
                     link!
                 </a>
                     
