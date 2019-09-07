@@ -28,6 +28,7 @@ class ContactoController extends Controller
 
     public function store(Request $r)
     {
+        \Log::info($r->all());
         $r->validate([
             "nombre"   => "required",
             "edad"     => "required",
@@ -35,7 +36,7 @@ class ContactoController extends Controller
             "email"    => "required",
             "tema"     => "required",
             "mensaje"  => "required",
-            "imagen"   => "image|mimes:jpeg,png,jpg,gif,svg|max:4096"
+            "imagen"   => "image|mimes:jpeg,png,jpg,gif,svg"
         ]);
 
         $c = new Contacto;
