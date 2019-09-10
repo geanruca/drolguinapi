@@ -71,11 +71,11 @@ class ContactoController extends Controller
                 "imagen"   => $r->imagen
             ]);
 
-            $historial = Contacto::where('email', $r->email)
-            ->get(); 
+            // $historial = Contacto::where('email', $r->email)
+            // ->get(); 
                
-            Mail::to('gerardo.ruiz.spa@gmail.com')
-            ->queue(new NuevoContacto($c, $historial));
+            // Mail::to('gerardo.ruiz.spa@gmail.com')
+            // ->queue(new NuevoContacto($c, $historial));
 
             return response()->json([
                 "status" => true,
