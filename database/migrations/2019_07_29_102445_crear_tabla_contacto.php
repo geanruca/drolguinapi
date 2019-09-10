@@ -15,12 +15,12 @@ class CrearTablaContacto extends Migration
     {
         Schema::create('contactos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre');
-            $table->string('edad');
+            $table->string('nombre')->nullable();
+            $table->string('edad')->nullable();
             $table->string('atendido')->default("no");
-            $table->string('email');
-            $table->string('tema');
-            $table->string('mensaje');
+            $table->string('email')->nullable();
+            $table->string('tema')->nullable();
+            $table->string('mensaje')->nullable();
             $table->string('imagen')->nullable();
             $table->string('url_imagen')->nullable();
             $table->timestamps();
