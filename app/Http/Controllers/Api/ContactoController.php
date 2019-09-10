@@ -29,15 +29,15 @@ class ContactoController extends Controller
     public function store(Request $r)
     {
         \Log::info($r->all());
-        // $r->validate([
+        $r->validate([
         //     "nombre"   => "required",
         //     "edad"     => "required",
         //     "atendido" => "required",
         //     "email"    => "required",
         //     "tema"     => "required",
         //     "mensaje"  => "required",
-        //     "imagen"   => "image|mimes:jpeg,png,jpg,gif,svg"
-        // ]);
+            "imagen"   => "image|mimes:jpeg,png,jpg,gif,svg"
+        ]);
 
         $c = new Contacto;
         $c->nombre   = $r->nombre;
