@@ -17,7 +17,7 @@ class CrearTablaContacto extends Migration
             $table->bigIncrements('id');
             $table->string('nombre')->nullable();
             $table->string('edad')->nullable();
-            $table->string('atendido')->default("no");
+            $table->string('atendido')->nullable();
             $table->string('email')->nullable();
             $table->string('tema')->nullable();
             $table->string('mensaje')->nullable();
