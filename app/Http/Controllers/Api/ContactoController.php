@@ -48,7 +48,7 @@ class ContactoController extends Controller
         $c->mensaje  = $r->mensaje;
         $c->imagen   = $r->imagen;
         if($r->imagen <> null){
-            $c->imagen     = $r->file('imagen')->store('contactos/'.$c->nombre,'public');
+            $c->imagen     = $r->file('imagen')->store('contactos/','public');
             $url_imagen    = Storage::url($c->imagen);
             $c->url_imagen = $url_imagen;
         }
