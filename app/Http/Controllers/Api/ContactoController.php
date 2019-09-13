@@ -56,10 +56,7 @@ class ContactoController extends Controller
 
         if(!$c->save()){
             \Log::error("Dr. Olguin App: Error al guardar datos");
-            return response()->json([
-                "status" => false,
-                "msg"    => "Error al guardar los datos"
-            ]);
+            return response()->json("Error al guardar los datos");
         }else{
             \Log::info("Nuevo contacto Dr. Olguín",[
                 "nombre"   => $r->nombre,
