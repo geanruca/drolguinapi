@@ -32,7 +32,7 @@ class NuevoContacto extends Mailable
     public function build()
     {
         // dd($this->c);
-        $c = $this->c;
+        $c         = $this->c;
         $historial = $this->historial;
         return $this->from($c->email, $c->nombre)
         ->replyTo($c->email, $c->nombre)
