@@ -29,15 +29,15 @@ class ContactoController extends Controller
     public function store(Request $r)
     {
         \Log::info($r->all());
-        // $r->validate([
-        //     "nombre"   => "required",
-        //     "edad"     => "required",
-        //     "atendido" => "required",
-        //     "email"    => "required",
-        //     "tema"     => "required",
-        //     "mensaje"  => "required",
-        //     "imagen"   => "image|mimes:jpeg,png,jpg,gif,svg"
-        // ]);
+        $r->validate([
+            "nombre"   => "required",
+            "edad"     => "required",
+            "atendido" => "required",
+            "email"    => "required",
+            "tema"     => "required",
+            "mensaje"  => "required",
+            "imagen"   => "image|mimes:jpeg,png,jpg,gif,svg"
+        ]);
 
         $c = new Contacto;
         $c->nombre   = $r->nombre;
@@ -48,7 +48,7 @@ class ContactoController extends Controller
         $c->mensaje  = $r->mensaje;
         $c->imagen   = $r->imagen;
         if($r->imagen <> null){
-            $c->imagen     = $r->file('imagen')->store('contactos/','public');
+            $c->imagen     = $r->file('imagen')->store('contactos','public');
             $url_imagen    = Storage::url($c->imagen);
             $c->url_imagen = $url_imagen;
         }
@@ -68,11 +68,15 @@ class ContactoController extends Controller
                 "imagen"   => $r->imagen
             ]);
 
-            // $historial = Contacto::where('email', $r->email)
-            // ->get(); 
+            $historial = Contacto::where('email', $r->email)
+            ->get(); 
                
-            // Mail::to('gerardo.ruiz.spa@gmail.com')
-            // ->queue(new NuevoContacto($c, $historial));
+            Mail::to('gerardo.ruiz.spa@gmail.com')
+            ->queue(new NuevoContacto($c, $historial));
+            Mail::to('jriquelme92@gmail.com')
+            ->queue(new NuevoContacto($c, $historial));
+            Mail::to('R.carpanetti@gmail.com')
+            ->queue(new NuevoContacto($c, $historial));
 
             return response()->json([
                 "status" => true,
