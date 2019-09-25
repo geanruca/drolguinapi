@@ -73,10 +73,14 @@ class ContactoController extends Controller
                
             Mail::to('gerardo.ruiz.spa@gmail.com')
             ->queue(new NuevoContacto($c, $historial));
-            Mail::to('jriquelme92@gmail.com')
+            Mail::to('AliasFilms.direccion@gmail.com')
             ->queue(new NuevoContacto($c, $historial));
-            Mail::to('R.carpanetti@gmail.com')
-            ->queue(new NuevoContacto($c, $historial));
+            //Mail::to('jriquelme92@gmail.com')
+            //->queue(new NuevoContacto($c, $historial));
+            //Mail::to('R.carpanetti@gmail.com')
+            //->queue(new NuevoContacto($c, $historial));
+            //Mail::to('rolguin@me.com')
+            //->queue(new NuevoContacto($c, $historial));
 
             return response()->json([
                 "status" => true,
