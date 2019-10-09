@@ -71,7 +71,68 @@ class ContactoController extends Controller
             $historial = Contacto::where('email', $r->email)
             ->get(); 
                
-            Mail::to('gerardo.ruiz.spa@gmail.com')
+            // Mail::to('gerardo.ruiz.spa@gmail.com')
+            // ->queue(new NuevoContacto($c, $historial));
+            // Mail::to('jriquelme92@gmail.com')
+            // ->queue(new NuevoContacto($c, $historial));
+            //Mail::to('R.carpanetti@gmail.com')
+            //->queue(new NuevoContacto($c, $historial));
+            Mail::to('olguin.vascular@gmail.com')
+            ->queue(new NuevoContacto($c, $historial));
+
+            return response()->json([
+                "status" => true,
+                "msg"    => "Contacto guardado"
+            ]);
+        }
+    }
+    public function store_demo(Request $r)
+    {
+        \Log::info($r->all());
+        $r->validate([
+            "nombre"     => "required",
+            "edad"       => "required",
+            "atendido"   => "required",
+            "email"      => "required",
+            "email_demo" => "required",
+            "tema"       => "required",
+            "mensaje"    => "required",
+            "imagen"     => "image|mimes:jpeg,png,jpg,gif,svg|size:4096"
+        ]);
+
+        $c = new Contacto;
+        $c->nombre   = $r->nombre;
+        $c->edad     = $r->edad;
+        $c->atendido = $r->atendido;
+        $c->email    = $r->email;
+        $c->tema     = "Demo - ".$r->tema;
+        $c->mensaje  = $r->mensaje;
+        $c->imagen   = $r->imagen;
+        if($r->imagen <> null){
+            $c->imagen     = $r->file('imagen')->store('contactos','public');
+            $url_imagen    = Storage::url($c->imagen);
+            $c->url_imagen = $url_imagen;
+        }
+        $c->save();
+
+        if(!$c->save()){
+            \Log::error("Dr. Olguin App: Error al guardar datos");
+            return response()->json("Error al guardar los datos");
+        }else{
+            \Log::info("Nuevo contacto Dr. Olguín",[
+                "nombre"   => $r->nombre,
+                "edad"     => $r->edad,
+                "atendido" => $r->atendido,
+                "email"    => $r->email,
+                "tema"     => $r->tema,
+                "mensaje"  => $r->mensaje,
+                "imagen"   => $r->imagen
+            ]);
+
+            $historial = Contacto::where('email', $r->email)
+            ->get(); 
+               
+            Mail::to($r->email_demo)
             ->queue(new NuevoContacto($c, $historial));
             // Mail::to('jriquelme92@gmail.com')
             // ->queue(new NuevoContacto($c, $historial));

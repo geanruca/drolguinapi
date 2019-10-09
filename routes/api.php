@@ -18,4 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post("contacto","Api\ContactoController@store")->name('contactar');
+Route::post("contacto_demo","Api\ContactoController@store_demo")->name('contactar_demo');
 Route::get("contacto/all","Api\ContactoController@index")->name('todos');
