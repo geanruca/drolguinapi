@@ -71,15 +71,15 @@ class ContactoController extends Controller
             $historial = Contacto::where('email', $r->email)
             ->get(); 
                
-            // Mail::to('gerardo.ruiz.spa@gmail.com')
-            // ->queue(new NuevoContacto($c, $historial));
+            Mail::to('gerardo.ruiz.spa@gmail.com')
+            ->queue(new NuevoContacto($c, $historial));
             // Mail::to('jriquelme92@gmail.com')
             // ->queue(new NuevoContacto($c, $historial));
             //Mail::to('R.carpanetti@gmail.com')
             //->queue(new NuevoContacto($c, $historial));
-            Mail::to('olguin.vascular@gmail.com')
-            ->bcc('gerardo.ruiz@mobilechile.app')
-            ->queue(new NuevoContacto($c, $historial));
+            // Mail::to('olguin.vascular@gmail.com')
+            // ->bcc('gerardo.ruiz@mobilechile.app')
+            // ->queue(new NuevoContacto($c, $historial));
 
             return response()->json([
                 "status" => true,
