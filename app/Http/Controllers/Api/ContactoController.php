@@ -36,7 +36,7 @@ class ContactoController extends Controller
             "email"    => "required",
             "tema"     => "required",
             "mensaje"  => "required",
-            "imagen"   => "image|mimes:jpeg,png,jpg,gif,svg|size:4096"
+            "imagen"   => "image|mimes:jpeg,png,jpg,gif,svg|max:4096"
         ]);
 
         $c = new Contacto;
