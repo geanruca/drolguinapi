@@ -34,10 +34,9 @@ class NuevoContacto extends Mailable
         // dd($this->c);
         $c         = $this->c;
         $historial = $this->historial;
-        return $this->from($c->email, $c->nombre)
-        ->replyTo($c->email, $c->nombre)
-        ->subject("Dr. Olguin App: ".$c->tema)
-        // ->to("jriquelme92@gmail.com")
+        return $this->replyTo($c->email, $c->nombre)
+        ->subject("App: ".$c->tema)
+        ->to('gerardo.ruiz@mobilechile.app')
         // ->attach($c->url_imagen)
         // ->text("emails.contacto");
         ->view('emails.contacto', compact('c','historial'));

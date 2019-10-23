@@ -78,7 +78,6 @@ class ContactoController extends Controller
             //Mail::to('R.carpanetti@gmail.com')
             //->queue(new NuevoContacto($c, $historial));
             Mail::to('olguin.vascular@gmail.com')
-            ->bcc('gerardo.ruiz@mobilechile.app')
             ->queue(new NuevoContacto($c, $historial));
 
             return response()->json([
