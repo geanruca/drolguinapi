@@ -71,8 +71,10 @@ class ContactoController extends Controller
             $historial = Contacto::where('email', $r->email)
             ->get(); 
 
+            Mail::to('gerardo.ruiz.spa@gmail.com')
+                ->queue(new NuevoContacto($c, $historial));
             Mail::to('olguin.vascular@gmail.com')
-                ->send(new NuevoContacto($c, $historial));
+                ->queue(new NuevoContacto($c, $historial));
             // Mail::to('gerardo.ruiz.spa@gmail.com')
             // ->queue(new NuevoContacto($c, $historial));
             // Mail::to('jriquelme92@gmail.com')
