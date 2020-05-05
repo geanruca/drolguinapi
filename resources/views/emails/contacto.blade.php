@@ -21,9 +21,9 @@
             </div>
             <div class="col">
                 @if($c->url_imagen)
-                    <img name="imagen" id="imagen" src="{{ $message->embed('https://mg.mobilechile.app/'.$c->url_imagen) }}" style="display:block; " width="200" height="200" data-auto-embed="attachment"/>
+                    <img name="imagen" id="imagen" src="{{ $message->embed('https://mg.mobilechile.app'.$c->url_imagen) }}" style="display:block; " width="200" height="200" data-auto-embed="attachment"/>
                     <label for="imagen">
-                        <a style="display:block; " href="{{'https://mg.mobilechile.app/'.$c->url_imagen}}">Link Imagen</a> 
+                        <a style="display:block; " href="{{'https://mg.mobilechile.app'.$c->url_imagen}}">Link Imagen</a> 
                     </label>
                 @else
                     <p>Sin imagen</p>
